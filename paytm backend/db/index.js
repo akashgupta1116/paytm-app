@@ -6,13 +6,13 @@ mongoose.connect(
 
 const UserScehma = new mongoose.Schema({
   username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      minLength: 3,
-      maxLenght: 30,
-      lowercase: true
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minLength: 3,
+    maxLenght: 30,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -31,11 +31,21 @@ const UserScehma = new mongoose.Schema({
     required: true,
     trim: true,
     maxLenght: 30,
-  }
+  },
+});
+
+const accoundSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  balance: number,
 });
 
 const User = mongoose.model("User", UserScehma);
-
+const Account = mongoose.model("Account", accoundSchema);
 module.exports = {
   User,
+  Account,
 };
