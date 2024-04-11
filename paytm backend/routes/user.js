@@ -36,7 +36,7 @@ router.post("/signup", async (req, res) => {
     username: body.username,
   });
 
-  if (user._id) {
+  if (user?._id) {
     return res.json({
       msg: "Email already taken",
     });
@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
 
   const dbUser = await User.create(body);
   await Account.create({
-    userId: user._id,
+    userId: dbUser._id,
     balance: 1 + Math.random() * 10000,
   });
 
@@ -55,7 +55,7 @@ router.post("/signup", async (req, res) => {
   });
 });
 
-router.post("/signin", (req, res) => {
+router.post("/signin", async (req, res) => {
   const body = req.body;
   const { success } = signinSchema.safeParse(body);
   if (!success) {
@@ -67,7 +67,7 @@ router.post("/signin", (req, res) => {
     body,
   });
 
-  if (!user._id) {
+  if (!user?._id) {
     return res.status(411).json({
       msg: "Email does not found",
     });
@@ -96,7 +96,7 @@ router.put("/", userAuthMiddleware, async (req, res) => {
   });
 });
 
-router.get("/bulk", userAuthMiddleware, async (res, res) => {
+router.get("/bulk", userAuthMiddleware, async (req, res) => {
   const filter = req.query.filter || "";
 
   const users = await User.find({

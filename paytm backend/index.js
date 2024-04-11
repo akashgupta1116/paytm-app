@@ -1,5 +1,5 @@
 const express = require("express");
-const { mainRouter } = require("./routes/index.js");
+const mainRouter = require("./routes/index.js");
 const cors = require("cors");
 
 const app = express();
@@ -8,7 +8,6 @@ app.use(cors());
 app.use(express.json());
 
 //versioning
-app.use("/api/v1", mainRouter);
 app.use("/api/v1", mainRouter);
 
 app.listen(3000);

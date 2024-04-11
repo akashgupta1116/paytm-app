@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://yoakash6:Akash%40123@cluster0.yqefgzr.mongodb.net/paytm-app/"
+  "mongodb+srv://yoakash6:Akash%40123@cluster0.yqefgzr.mongodb.net/paytm-app"
 );
 
 const UserScehma = new mongoose.Schema({
@@ -20,13 +20,13 @@ const UserScehma = new mongoose.Schema({
     minLength: 3,
     maxLenght: 30,
   },
-  firstName: {
+  firstname: {
     type: String,
     required: true,
     trim: true,
     maxLenght: 30,
   },
-  lastName: {
+  lastname: {
     type: String,
     required: true,
     trim: true,
@@ -40,7 +40,7 @@ const accoundSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  balance: number,
+  balance: Number,
 });
 
 const User = mongoose.model("User", UserScehma);

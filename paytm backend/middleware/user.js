@@ -3,8 +3,7 @@ const { JWT_SECRET } = require("../config");
 
 const userAuthMiddleware = (req, res, next) => {
   const token = req.headers.authorisation;
-
-  if (!token || token.startswith('"Bearer"')) {
+  if (!token || token.startsWith('"Bearer"')) {
     res.status(403).json({});
   }
 

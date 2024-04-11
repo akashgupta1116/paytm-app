@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import Dashboard from './pages/Dashborad'
+import SendMoney from './pages/SendMoney'
 
 function App() {
 
   return (
-    <div className = "grid grid-cols-3">
-      <div className = "colspan-3 bg-red-500"> 
-        red 
-      </div>
-      <div className = "colspan-3 bg-blue-500"> 
-        gray 
-      </div>
-      <div className = "colspan-3 bg-yellow-500"> 
-        yellow 
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path = "/signin" element = {<Signin/>}/>
+        <Route path = "/signup" element = {<Signup/>}/>
+        <Route path = "/dashboard" element = {<Dashboard/>}/>
+        <Route path = "/sendmoney" element = {<SendMoney/>}/>
+      </Routes>
+    </BrowserRouter>    
   )
 }
 
